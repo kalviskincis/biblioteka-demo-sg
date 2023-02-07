@@ -9,13 +9,13 @@ import mekletajs
 
 sg.theme('SystemDefault')
 
-# darbinieka ielogošanās loga izveide # DONE
+# darbinieka ielogošanās loga izveide
 pieteiksanas = [[sg.Text('Ievadi personas kodu un paroli')],
                 [sg.Text('Personas kods', size=(15, 1)), sg.InputText(key="-personas-kods-")],
                 [sg.Text('Parole', size=(15, 1)), sg.InputText(password_char='*', key="-parole-")],
                 [sg.Button("Pieteikties")]]
 
-# symplegui meklēšanas forma ar šādiem ievades laukums - autors, nosaukums, gads, izdevējs, numurs
+# meklēšanas forma
 meklesanas = [[sg.Text('Meklēt')],
               [sg.Text('Izdevuma veids', size=(15, 1)),
                sg.Combo(values=iespieddarbi.kategorijas_combolist, key="-mekl-izdevuma-veids-")],
@@ -32,7 +32,7 @@ meklesanas = [[sg.Text('Meklēt')],
                         auto_size_columns=True, display_row_numbers=False, justification='left', num_rows=15,
                         key='-MEKLESANAS-REZULTATI-')]]
 
-# Iespieddarbu pievienošanas forma # DONE
+# Iespieddarbu pievienošanas forma
 pievienosana = [[sg.Text('Pievienot')],
                 [sg.Text('Autora vārds', size=(15, 1)), sg.InputText(key="-autors-vards-")],
                 [sg.Text('Autora uzvārds', size=(15, 1)), sg.InputText(key="-autors-uzvards-")],
@@ -57,7 +57,7 @@ pievienosana_lietotajs = [[sg.Text('Pievienot')],
                            sg.Combo(values=lietotaji.kategorijas_combolist, key="-lietotajs-kategorija-")],
                           [sg.Button("Pievienot", key="-pievienot-lietotaju-")]]
 
-# simplegui forma, kurā ievadīt grāmatas ID, lasītāja vārdu, uzvārdu, personas kodu, un termiņa datumu
+# izsniegšanas skats
 izsniegsana = [[sg.Text('Izsniegšana')],
                [sg.Text('Vārds', size=(15, 1)), sg.InputText(key="-las-vards-")],
                [sg.Text('Uzvārds', size=(15, 1)), sg.InputText(key="-las-uzvards-")],
