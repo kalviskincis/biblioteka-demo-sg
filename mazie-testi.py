@@ -7,7 +7,7 @@ import lasitava
 # print(gr1)
 # print(gr1.__class__.__name__)
 # gr1.saglabat_db()
-
+#
 # zhurn = iespieddarbi.Periodika("Dienas žurnāli","Dadzis", "2020", "1", 3, 11)
 # print(zhurn)
 # zhurn.saglabat_db()

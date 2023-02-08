@@ -94,14 +94,14 @@ class Periodika(Iespieddarbs):
     def saglabat_db(self):
         conn = db.izveidot_savienojumu()
 
-        parbaudit_izdeveju_vaicajums = f"SELECT nosaukums FROM izdeveji WHERE izdeveja_nosaukums=\"{self.izdevejs}\""
+        parbaudit_izdeveju_vaicajums = f"SELECT izdeveja_nosaukums FROM izdeveji WHERE izdeveja_nosaukums=\"{self.izdevejs}\""
         rezultats = conn.execute(parbaudit_izdeveju_vaicajums).fetchall()
         if len(rezultats) == 0:
             izdevejs_uz_db = (self.izdevejs,)
             conn.execute("INSERT INTO izdeveji (izdeveja_nosaukums) VALUES (?)", izdevejs_uz_db)
             conn.commit()
 
-        izdeveja_id_vaicajums = f"SELECT ID FROM izdeveji WHERE nosaukums=\"{self.izdevejs}\""
+        izdeveja_id_vaicajums = f"SELECT ID FROM izdeveji WHERE izdeveja_nosaukums=\"{self.izdevejs}\""
         atbilde = conn.execute(izdeveja_id_vaicajums).fetchone()
         izdeveja_id = atbilde["ID"]
 
