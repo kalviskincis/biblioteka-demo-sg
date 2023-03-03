@@ -2,6 +2,8 @@ import iespieddarbi
 import lietotaji
 import mekletajs
 import lasitava
+import validacija
+
 
 # gr1 = iespieddarbi.Gramata("Zvaigzne", "Pēteris", "Zveja", "Lielā kaķu sugu grāmata", 2010, 2, 110)
 # print(gr1)
@@ -29,3 +31,6 @@ import lasitava
 
 # mekletajs.rezultatu_tabula([6, 9])
 # print(mekletajs.izdevuma_info(7))
+
+# print(validacija.personas_kods("112233-44556"))
+# print(validacija.talrunis("02111222"))

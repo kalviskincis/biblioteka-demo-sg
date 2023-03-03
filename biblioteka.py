@@ -6,6 +6,7 @@ import iespieddarbi
 import lasitava
 import lietotaji
 import mekletajs
+import validacija
 
 sg.theme('SystemDefault')
 
@@ -90,15 +91,21 @@ while True:
     if event == 'Pieteikties':
         personas_kods = values['-personas-kods-']
         parole = values["-parole-"]
-        if lietotaji.parbaude(personas_kods, parole):
-            sg.popup('Pieteikšanās veiksmīga')
-            window['Pieteikšanās'].update(visible=False)
-            window['Meklēšana'].update(visible=True)
-            window['Iespieddarbu pievienošana'].update(visible=True)
-            window['Lietotāju pievienošana'].update(visible=True)
-            window['Lasītāju apkalpošana'].update(visible=True)
+
+        if validacija.personas_kods(personas_kods) and validacija.teksts(parole):
+
+            if lietotaji.parbaude(personas_kods, parole):
+                sg.popup('Pieteikšanās veiksmīga')
+                window['Pieteikšanās'].update(visible=False)
+                window['Meklēšana'].update(visible=True)
+                window['Iespieddarbu pievienošana'].update(visible=True)
+                window['Lietotāju pievienošana'].update(visible=True)
+                window['Lasītāju apkalpošana'].update(visible=True)
+            else:
+                print('Pieteikšanās neveiksmīga')
+
         else:
-            print('Pieteikšanās neveiksmīga')
+            sg.popup("Kļūda ievades datos")
 
     if event == '-meklet-darbu-':
         vards = values['-mekl-autors-vards-']
@@ -156,8 +163,8 @@ while True:
         parole = values["-lietotajs-parole-"]
         kategorija = values["-lietotajs-kategorija-"]
         datums = datetime.now().date()
-        if vards == "" or uzvards == "" or personas_kods == "" or talrunis == "":
-            sg.popup('Nav aizpildīti lietotāja pievienošanai nepieciešamie lauki.')
+        if vards == "" or uzvards == "" or personas_kods == "" or talrunis == "" or validacija.talrunis(talrunis) == False or validacija.talrunis(personas_kods) == False:
+            sg.popup('Nav aizpildīti lietotāja pievienošanai nepieciešamie lauki vai tie ievadīti nekorekti.')
         else:
             if kategorija == "lasītājs":
                 lasitajs = lietotaji.Lasitajs(vards, uzvards, personas_kods, talrunis, datums)
